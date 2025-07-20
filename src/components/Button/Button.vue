@@ -1,5 +1,13 @@
 <script setup>
 const props = defineProps({
+  iconPosition: {
+    type: String,
+    default: 'left',
+  },
+  isFull: {
+    type: Boolean,
+    default: false,
+  },
   onClick: {
     type: Function,
   },
@@ -30,11 +38,20 @@ const props = defineProps({
       :data-size="size"
       :disabled="disabled"
       @click="onClick"
+      :class="{ 'full-width': isFull }"
+      :data-isFull="isFull"
     >
+      <template v-if="iconPosition === 'left'">
+        <div v-if="icon" class="button-icon">
+          <component :is="icon" />
+        </div>
+      </template>
       <slot />
-      <div v-if="icon" class="button-icon">
-        <component :is="icon" />
-      </div>
+      <template v-if="iconPosition === 'right'">
+        <div v-if="icon" class="button-icon">
+          <component :is="icon" />
+        </div>
+      </template>
     </button>
   </div>
 </template>
@@ -80,15 +97,6 @@ $buttonThemes: (
     icon-disabled-color: $white,
     icon-outline-color: $color-highlight,
     icon-outline-hover-color: $black,
-    // 白底+有邊框的按鈕樣式
-    outline-color: $color-highlight,
-    outline-hover-color: $black,
-    outline-background-color: $white,
-    outline-hover-background-color: $white,
-    outline-border-color: $color-highlight,
-    outline-hover-border-color: $black,
-    outline-disabled-background-color: $gray-disabled,
-    outline-disabled-border-color: transparent,
   ),
 
   info: (
@@ -136,7 +144,6 @@ $buttonSizes: (
     font-size: 16px,
     min-width: 86px,
     min-height: 38px,
-    padding-horizontal: 16px,
     mobile-font-size: 14px,
     mobile-min-width: 86px,
     mobile-min-height: 38px,
@@ -146,17 +153,15 @@ $buttonSizes: (
     font-size: 24px,
     min-width: 158px,
     min-height: 38px,
-    padding-horizontal: 20px,
     mobile-font-size: 16px,
     mobile-min-width: 158px,
     mobile-min-height: 38px,
     mobile-padding-horizontal: 16px,
   ),
   lg: (
-    font-size: 24px,
-    min-width: 462px,
-    min-height: 35px,
-    padding-horizontal: 30px,
+    font-size: 20px,
+    min-width: 142px,
+    min-height: 50px,
     mobile-font-size: 18px,
     mobile-min-width: 462px,
     mobile-min-height: 35px,
@@ -166,6 +171,7 @@ $buttonSizes: (
 
 .button-wrapper {
   height: fit-content;
+  width: auto;
 
   .button {
     @each $theme, $styles in $buttonThemes {
@@ -211,8 +217,8 @@ $buttonSizes: (
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    height: 20px;
+    width: auto;
+    max-height: 20px;
   }
 
   @each $theme, $styles in $buttonThemes {
@@ -244,5 +250,9 @@ $buttonSizes: (
       padding: 0 map-get($sizeStyles, padding-horizontal);
     }
   }
+}
+
+.full-width {
+  width: 100%;
 }
 </style>

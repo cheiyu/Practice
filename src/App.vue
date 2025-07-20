@@ -5,6 +5,8 @@ import Button from './components/Button/Button.vue'
 import DeleteIcon from '@/assets/icons/delete.svg'
 import FilterIcon from '@/assets/icons/filter.svg'
 import EditIcon from '@/assets/icons/edit.svg'
+import NotifyIcon from '@/assets/icons/notification.svg'
+import SortIcon from '@/assets/icons/sort.svg'
 
 const aloha = () => {
   alert('阿囉哈')
@@ -24,14 +26,18 @@ const aloha = () => {
       </nav>
     </div>
 
-    <Button theme="primary" size="md">送出</Button>
-    <Button theme="info" size="md">評價</Button>
-    <Button theme="secondary" size="md">取消</Button>
-    <Button :onClick="aloha" theme="primary" size="lg">GO</Button>
-    <Button theme="info" size="md" disabled="disabled">編輯</Button>
-    <Button :icon="DeleteIcon" theme="secondary" size="sm">刪除</Button>
-    <Button :icon="FilterIcon" theme="secondary" size="sm">篩選</Button>
-    <Button :icon="EditIcon" theme="info" size="sm">編輯</Button>
+    <Button :onClick="aloha" theme="primary" size="md">送出</Button>
+    <br />
+    <Button theme="primary" size="md">評價</Button>
+    <Button theme="secondary" size="md" disabled="disabled">取消</Button>
+    <br />
+    <Button isFull="true" theme="primary" size="md">GO</Button>
+    <br />
+    <Button iconPosition="right" :icon="FilterIcon" theme="secondary" size="sm">篩選</Button>
+    <Button iconPosition="right" :icon="SortIcon" theme="secondary" size="sm">排序</Button>
+    <br />
+    <Button :icon="NotifyIcon" theme="primary" size="lg">通知訊息</Button>
+    <Button :icon="EditIcon" theme="info" size="lg">編輯檔案</Button>
   </header>
 
   <RouterView />
@@ -71,32 +77,5 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
 }
 </style>
