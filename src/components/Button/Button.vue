@@ -29,34 +29,29 @@ const props = defineProps({
       :data-theme="theme"
       :data-size="size"
       :disabled="disabled"
-      @click="props.onClick"
+      @click="onClick"
     >
       <slot />
-      <div class="button-icon">
-        <component :is="props.icon" />
+      <div v-if="icon" class="button-icon">
+        <component :is="icon" />
       </div>
     </button>
   </div>
 </template>
 
 <style lang="scss" scoped>
-// === 區塊名稱 ===
-// Primary - 確認/送出/我要跟團/GO
 $color-highlight: #fada7a;
 $yellow: #f9ff4d;
 $orange: #fdc520;
 
-// Info - 評價/編輯
 $color-primary: #81bfda;
 $color-secondary: #b1f0f7;
 $blue: #4f8da8;
 
-// Secondary - 取消/刪除
 $color-neutral: #f5f0cd;
 $light-yellow: #fff39c;
 $brown: #ada572;
 
-//其他
 $gray-disabled: #d0d0d0;
 $white: #fff;
 $black: #000;
@@ -173,10 +168,8 @@ $buttonSizes: (
   height: fit-content;
 
   .button {
-    //primary, info, secondary 樣式 == <MyButton theme="primary" size="normal">送出</MyButton>的theme=""
     @each $theme, $styles in $buttonThemes {
       &[data-theme='#{$theme}'] {
-        //抓對應主題的hover樣式
         &:hover {
           color: map-get($styles, hover-color);
           background-color: map-get($styles, hover-background-color);
