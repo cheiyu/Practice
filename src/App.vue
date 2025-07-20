@@ -1,7 +1,10 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-import MyButton from './components/MyButton/MyButton.vue'
+import Button from './components/Button/Button.vue'
+import DeleteIcon from '@/assets/icons/delete.svg'
+import FilterIcon from '@/assets/icons/filter.svg'
+import EditIcon from '@/assets/icons/edit.svg'
 
 const aloha = () => {
   alert('阿囉哈')
@@ -21,12 +24,14 @@ const aloha = () => {
       </nav>
     </div>
 
-    <MyButton theme="primary" size="normal">送出</MyButton>
-    <MyButton theme="info" size="normal">評價</MyButton>
-    <MyButton theme="secondary" size="normal">取消</MyButton>
-    <MyButton theme="primary" size="wide">GO</MyButton>
-    <MyButton :onClick="aloha" theme="info" size="normal" disabled="disabled">編輯</MyButton>
-    <MyButton icon="delete" theme="secondary" size="small">刪除</MyButton>
+    <Button theme="primary" size="md">送出</Button>
+    <Button theme="info" size="md">評價</Button>
+    <Button theme="secondary" size="md">取消</Button>
+    <Button :onClick="aloha" theme="primary" size="lg">GO</Button>
+    <Button theme="info" size="md" disabled="disabled">編輯</Button>
+    <Button :icon="DeleteIcon" theme="secondary" size="sm">刪除</Button>
+    <Button :icon="FilterIcon" theme="secondary" size="sm">篩選</Button>
+    <Button :icon="EditIcon" theme="info" size="sm">編輯</Button>
   </header>
 
   <RouterView />
