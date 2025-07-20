@@ -1,0 +1,247 @@
+// === 區塊名稱 ===
+// Primary - 確認/送出/我要跟團/GO
+$color-primary-default: #fada7a;
+$color-primary-hover: #f9ff4d;
+$color-primary-active: #fdc520;
+
+// Info - 評價/編輯
+$color-info-default: #81bfda;
+$color-info-hover: #b1f0f7;
+$color-info-active: #4f8da8;
+
+// Secondary - 取消/刪除
+$color-secondary-default: #f5f0cd;
+$color-secondary-hover: #fff39c;
+$color-secondary-active: #ada572;
+
+//其他
+$gray-disabled: #d0d0d0;
+$white: #fff;
+$black: #000;
+$gray-light: rgba($gray-disabled, 0.2);
+
+// themes
+$buttonThemes: (
+  primary: (
+    //字體顏色
+    color: $black,
+    hover-color: $black,
+    active-color: $white,
+    //背景顏色
+    background-color: $color-primary-default,
+    hover-background-color: $color-primary-hover,
+    active-background-color: $color-primary-active,
+    //disabled設定
+    disabled-background-color: $gray-disabled,
+    disabled-font-color: $white,
+    //邊框色
+    border-color: $black,
+    //icon顏色
+    icon-color: $black,
+    icon-hover-color: $black,
+    icon-active-color: $white,
+    icon-disabled-color: $white,
+    icon-outline-color: $color-primary-default,
+    icon-outline-hover-color: $black,
+    //白底+有邊框的按鈕樣式
+    outline-color: $color-primary-default,
+    outline-hover-color: $black,
+    outline-background-color: $white,
+    outline-hover-background-color: $white,
+    outline-border-color: $color-primary-default,
+    outline-hover-border-color: $black,
+    outline-disabled-background-color: $gray-disabled,
+    outline-disabled-border-color: transparent,
+  ),
+
+  info: (
+    color: $black,
+    hover-color: $black,
+    active-color: $white,
+    background-color: $color-info-default,
+    hover-background-color: $color-info-hover,
+    active-background-color: $color-info-active,
+    disabled-background-color: $gray-disabled,
+    disabled-font-color: $white,
+    border-color: $black,
+    icon-color: $black,
+    icon-hover-color: $black,
+    icon-active-color: $white,
+    icon-disabled-color: $white,
+    icon-outline-color: $color-info-default,
+    icon-outline-hover-color: $black,
+    outline-color: $color-info-default,
+    outline-hover-color: $black,
+    outline-background-color: $white,
+    outline-hover-background-color: $white,
+    outline-border-color: $color-info-default,
+    outline-hover-border-color: $color-info-hover,
+    outline-disabled-background-color: $gray-disabled,
+    outline-disabled-border-color: transparent,
+  ),
+
+  secondary: (
+    color: $black,
+    hover-color: $black,
+    active-color: $white,
+    background-color: $color-secondary-default,
+    hover-background-color: $color-secondary-hover,
+    active-background-color: $color-secondary-active,
+    disabled-background-color: $gray-disabled,
+    disabled-font-color: $white,
+    border-color: $black,
+    icon-color: $black,
+    icon-hover-color: $black,
+    icon-active-color: $white,
+    icon-disabled-color: $white,
+    icon-outline-color: $color-secondary-default,
+    icon-outline-hover-color: $black,
+    outline-color: $color-secondary-default,
+    outline-hover-color: $black,
+    outline-background-color: $white,
+    outline-hover-background-color: $white,
+    outline-border-color: $color-secondary-default,
+    outline-hover-border-color: $color-secondary-hover,
+    outline-disabled-background-color: $gray-disabled,
+    outline-disabled-border-color: transparent,
+  ),
+);
+
+// 目前桌機跟手機樣式一樣，但還是先把變數列出來
+// sizes
+$buttonSizes: (
+  normal: (
+    font-size: 24px,
+    min-width: 158px,
+    min-height: 38px,
+    padding-horizontal: 20px,
+    mobile-font-size: 16px,
+    mobile-min-width: 158px,
+    mobile-min-height: 38px,
+    mobile-padding-horizontal: 16px,
+  ),
+  wide: (
+    font-size: 24px,
+    min-width: 462px,
+    min-height: 35px,
+    padding-horizontal: 30px,
+    mobile-font-size: 18px,
+    mobile-min-width: 462px,
+    mobile-min-height: 35px,
+    mobile-padding-horizontal: 24px,
+  ),
+  small: (
+    font-size: 16px,
+    min-width: 86px,
+    min-height: 38px,
+    padding-horizontal: 16px,
+    mobile-font-size: 14px,
+    mobile-min-width: 86px,
+    mobile-min-height: 38px,
+    mobile-padding-horizontal: 16px,
+  ),
+);
+
+// button-wrapper控制外距跟cursor
+
+.button-wrapper {
+  height: fit-content;
+
+  .button {
+    //primary, info, secondary 樣式 == <MyButton theme="primary" size="normal">送出</MyButton>的theme=""
+    @each $theme, $styles in $buttonThemes {
+      &[data-theme='#{$theme}'] {
+        //抓對應主題的hover樣式
+        &:hover {
+          color: map-get($styles, hover-color);
+          background-color: map-get($styles, hover-background-color);
+          border-color: map-get($styles, border-color);
+        }
+
+        &:active {
+          color: map-get($styles, active-color);
+          background-color: map-get($styles, active-background-color);
+          .button-icon {
+            color: map-get($styles, icon-active-color);
+          }
+        }
+
+        &:disabled {
+          background-color: map-get($styles, disabled-background-color);
+          color: map-get($styles, disabled-font-color);
+          cursor: default;
+
+          .button-icon {
+            color: map-get($styles, icon-disabled-color);
+          }
+        }
+      }
+
+      // &[data-is-outline='true'][data-theme='#{$theme}'] {
+      //   &:hover {
+      //     color: map-get($styles, outline-hover-color);
+      //     background-color: map-get($styles, outline-hover-background-color);
+      //     border: 1px solid map-get($styles, outline-hover-border-color);
+      //   }
+
+      //   &:disabled {
+      //     background-color: map-get($styles, outline-disabled-background-color);
+      //     border-color: map-get($styles, outline-disabled-border-color);
+      //   }
+      // }
+    }
+  }
+}
+
+.button {
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid;
+  cursor: pointer;
+
+  &-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+  }
+
+  @each $theme, $styles in $buttonThemes {
+    &[data-theme='#{$theme}'] {
+      color: map-get($styles, color);
+      background-color: map-get($styles, background-color);
+      border-color: map-get($styles, border-color);
+
+      .button-icon {
+        color: map-get($styles, icon-color);
+      }
+
+      &:disabled {
+        background-color: map-get($styles, disabled-background-color);
+        color: map-get($styles, disabled-font-color);
+        cursor: not-allowed;
+        .button-icon {
+          color: map-get($styles, icon-disabled-color);
+        }
+      }
+    }
+
+    &[data-is-outline='true'][data-theme='#{$theme}'] {
+      color: map-get($styles, outline-color);
+      background-color: map-get($styles, outline-background-color);
+      border: 1px solid map-get($styles, outline-border-color);
+    }
+  }
+
+  @each $size, $sizeStyles in $buttonSizes {
+    &[data-size='#{$size}'] {
+      font-size: map-get($sizeStyles, font-size);
+      min-width: map-get($sizeStyles, min-width);
+      min-height: map-get($sizeStyles, min-height);
+      padding: 0 map-get($sizeStyles, padding-horizontal);
+    }
+  }
+}
