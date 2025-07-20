@@ -31,7 +31,7 @@ const aloha = () => {
     <Button theme="primary" size="md">評價</Button>
     <Button theme="secondary" size="md" disabled="disabled">取消</Button>
     <br />
-    <Button isFull="true" theme="primary" size="md">GO</Button>
+    <Button isFull theme="primary" size="md">GO</Button>
     <br />
     <Button :suffixIcon="FilterIcon" theme="secondary" size="sm">篩選</Button>
     <Button :suffixIcon="SortIcon" theme="secondary" size="sm">排序</Button>
