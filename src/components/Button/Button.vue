@@ -1,8 +1,10 @@
 <script setup>
 const props = defineProps({
-  iconPosition: {
+  prefixIcon: {
     type: String,
-    default: 'left',
+  },
+  suffixIcon: {
+    type: String,
   },
   isFull: {
     type: Boolean,
@@ -38,20 +40,15 @@ const props = defineProps({
       :data-size="size"
       :disabled="disabled"
       @click="onClick"
-      :class="{ 'full-width': isFull }"
-      :data-isFull="isFull"
+      :data-is-full="isFull"
     >
-      <template v-if="iconPosition === 'left'">
-        <div v-if="icon" class="button-icon">
-          <component :is="icon" />
-        </div>
-      </template>
+      <div v-if="prefixIcon" class="icon prefix button-icon">
+        <component :is="prefixIcon" />
+      </div>
       <slot />
-      <template v-if="iconPosition === 'right'">
-        <div v-if="icon" class="button-icon">
-          <component :is="icon" />
-        </div>
-      </template>
+      <div v-if="suffixIcon" class="icon suffix button-icon">
+        <component :is="suffixIcon" />
+      </div>
     </button>
   </div>
 </template>
@@ -144,6 +141,7 @@ $buttonSizes: (
     font-size: 16px,
     min-width: 86px,
     min-height: 38px,
+    padding-horizontal: 16px,
     mobile-font-size: 14px,
     mobile-min-width: 86px,
     mobile-min-height: 38px,
@@ -153,6 +151,7 @@ $buttonSizes: (
     font-size: 24px,
     min-width: 158px,
     min-height: 38px,
+    padding-horizontal: 16px,
     mobile-font-size: 16px,
     mobile-min-width: 158px,
     mobile-min-height: 38px,
@@ -162,6 +161,7 @@ $buttonSizes: (
     font-size: 20px,
     min-width: 142px,
     min-height: 50px,
+    padding-horizontal: 16px,
     mobile-font-size: 18px,
     mobile-min-width: 462px,
     mobile-min-height: 35px,
@@ -252,7 +252,7 @@ $buttonSizes: (
   }
 }
 
-.full-width {
+.button[data-is-full='true'] {
   width: 100%;
 }
 </style>

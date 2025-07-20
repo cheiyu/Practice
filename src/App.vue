@@ -33,18 +33,18 @@ const aloha = () => {
     <br />
     <Button isFull="true" theme="primary" size="md">GO</Button>
     <br />
-    <Button iconPosition="right" :icon="FilterIcon" theme="secondary" size="sm">篩選</Button>
-    <Button iconPosition="right" :icon="SortIcon" theme="secondary" size="sm">排序</Button>
+    <Button :suffixIcon="FilterIcon" theme="secondary" size="sm">篩選</Button>
+    <Button :suffixIcon="SortIcon" theme="secondary" size="sm">排序</Button>
     <br />
-    <Button :icon="NotifyIcon" theme="primary" size="lg">通知訊息</Button>
-    <Button :icon="EditIcon" theme="info" size="lg">編輯檔案</Button>
+    <Button :prefixIcon="NotifyIcon" theme="primary" size="lg">通知訊息</Button>
+    <Button :prefixIcon="EditIcon" theme="info" size="lg">編輯檔案</Button>
   </header>
 
   <RouterView />
 </template>
 
 <style scoped>
-header {
+/* header {
   line-height: 1.5;
   max-height: 100vh;
 }
@@ -77,5 +77,5 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
-}
+} */
 </style>
