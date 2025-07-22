@@ -1,7 +1,12 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-import MyButton from './components/MyButton/MyButton.vue'
+import Button from './components/Button/Button.vue'
+import DeleteIcon from '@/assets/icons/delete.svg'
+import FilterIcon from '@/assets/icons/filter.svg'
+import EditIcon from '@/assets/icons/edit.svg'
+import NotifyIcon from '@/assets/icons/notification.svg'
+import SortIcon from '@/assets/icons/sort.svg'
 
 const aloha = () => {
   alert('阿囉哈')
@@ -21,19 +26,25 @@ const aloha = () => {
       </nav>
     </div>
 
-    <MyButton theme="primary" size="normal">送出</MyButton>
-    <MyButton theme="info" size="normal">評價</MyButton>
-    <MyButton theme="secondary" size="normal">取消</MyButton>
-    <MyButton theme="primary" size="wide">GO</MyButton>
-    <MyButton :onClick="aloha" theme="info" size="normal" disabled="disabled">編輯</MyButton>
-    <MyButton icon="delete" theme="secondary" size="small">刪除</MyButton>
+    <Button :onClick="aloha" theme="primary" size="md">送出</Button>
+    <br />
+    <Button theme="primary" size="md">評價</Button>
+    <Button theme="secondary" size="md" disabled="disabled">取消</Button>
+    <br />
+    <Button isFull theme="primary" size="md">GO</Button>
+    <br />
+    <Button :suffixIcon="FilterIcon" theme="secondary" size="sm">篩選</Button>
+    <Button :suffixIcon="SortIcon" theme="secondary" size="sm">排序</Button>
+    <br />
+    <Button :prefixIcon="NotifyIcon" theme="primary" size="lg">通知訊息</Button>
+    <Button :prefixIcon="EditIcon" theme="info" size="lg">編輯檔案</Button>
   </header>
 
   <RouterView />
 </template>
 
 <style scoped>
-header {
+/* header {
   line-height: 1.5;
   max-height: 100vh;
 }
@@ -66,32 +77,5 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
+} */
 </style>
